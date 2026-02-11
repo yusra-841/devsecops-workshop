@@ -1,7 +1,16 @@
 FROM node:18-alpine
+
 WORKDIR /app
-COPY package*.json ./
+
+# Copy only package.json
+COPY package.json ./
+
+# Install dependencies
 RUN npm install --production
+
+# Copy the rest of the app
 COPY . .
+
 EXPOSE 3000
 CMD ["node", "index.js"]
+
